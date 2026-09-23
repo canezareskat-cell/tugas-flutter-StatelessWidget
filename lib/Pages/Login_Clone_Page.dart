@@ -29,7 +29,6 @@ class LoginClonePage extends StatelessWidget {
                 const SizedBox(height: 40),
 
                 // PANGGIL KOMPONEN TEKS KUSTOM DI SINI
-                // Karena warna default-nya sudah putih & silver, kodenya jadi bersih banget!
                 const CustomTextDiscord(
                   title: 'WELCOME TO\nDISCORD',
                   subtitle: 'Hang out, play games, or just talk. Tap below to get started!',

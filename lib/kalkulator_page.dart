@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class KalkulatorPage extends StatefulWidget {
-  const KalkulatorPage({super.key});
+class KalkulatorPage1 extends StatefulWidget {
+  const KalkulatorPage1({super.key});
 
   @override
-  State<KalkulatorPage> createState() => _KalkulatorPageState();
+  State<KalkulatorPage1> createState() => _KalkulatorPage1State();
 }
 
-class _KalkulatorPageState extends State<KalkulatorPage> {
+class _KalkulatorPage1State extends State<KalkulatorPage1> {
   // Controller untuk membaca inputan angka
   final TextEditingController c1 = TextEditingController();
   final TextEditingController c2 = TextEditingController();
