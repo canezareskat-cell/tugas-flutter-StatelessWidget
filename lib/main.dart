@@ -6,7 +6,7 @@ import 'package:canezares_flutter_rorrrrrr/Pages/kalkulator_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:canezares_flutter_rorrrrrr/routes.dart';
-
+import 'package:canezares_flutter_rorrrrrr/Pages/list_makanan_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "My Learning App",
-      initialRoute: Routes.registration,
+      initialRoute: Routes.list_makanan,
       getPages: Routes.myPages,
     );
   }
