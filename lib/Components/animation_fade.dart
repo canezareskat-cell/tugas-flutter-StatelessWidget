@@ -8,7 +8,7 @@ class FadeAnimation extends StatelessWidget {
   const FadeAnimation({
     Key? key,
     required this.child,
-    this.duration = const Duration(milliseconds: 300), // Default durasi 0.8 detik
+    this.duration = const Duration(milliseconds: 3000), // Default durasi 3 detik
   }) : super(key: key);
 
   @override

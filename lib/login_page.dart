@@ -18,7 +18,6 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(title: Text("Login Page")),
       body: Column(
         children: [
-          // kita isi textfield username, password, dan button
           Text(
             "Welcome to Application" + statusLogin,
             style: TextStyle(fontSize: 20, color: Colors.yellow),
@@ -40,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
 
-          // Tambahan ElevatedButton login
+  
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

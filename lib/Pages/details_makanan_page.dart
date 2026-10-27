@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../Models/makanan_model.dart'; // Sesuaikan path modelmu
+// Pastikan path import ini sesuai dengan letak controller kamu
+import '../Controller/detail_makanan_controller.dart'; 
+
 
 class DetailsMakananPage extends StatelessWidget {
-  final MakananModel makanan;
+  // 1. Constructor sekarang kosong/bebas parameter
+  DetailsMakananPage({super.key});
 
-  const DetailsMakananPage({super.key, required this.makanan});
+  // 2. Inisialisasi controller di sini
+  final DetailMakananController controller = Get.put(DetailMakananController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F9FD), // Latar belakang biru sangat muda/keputihan
+      backgroundColor: const Color(0xFFF4F9FD),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 168, 219, 255), // Biru keputihan yang senada
+        backgroundColor: const Color.fromARGB(255, 168, 219, 255),
         elevation: 0,
         title: Text(
-          makanan.namaMakanan,
+          controller.namaMakanan,
           style: const TextStyle(
             color: Color.fromARGB(255, 20, 60, 100),
             fontWeight: FontWeight.bold,
@@ -27,7 +31,6 @@ class DetailsMakananPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 1. Gambar Besar di Atas dengan Sudut Melengkung Bawah
             Container(
               decoration: BoxDecoration(
                 boxShadow: [
@@ -44,7 +47,7 @@ class DetailsMakananPage extends StatelessWidget {
                   bottomRight: Radius.circular(24),
                 ),
                 child: Image.network(
-                  makanan.gambar,
+                  controller.gambarMakanan,
                   width: double.infinity,
                   height: 260,
                   fit: BoxFit.cover,
@@ -63,13 +66,12 @@ class DetailsMakananPage extends StatelessWidget {
                 ),
               ),
             ),
-            
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Kategori & Rating
+                  // Review & Rating
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -80,7 +82,7 @@ class DetailsMakananPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
-                          makanan.kategori,
+                          "${controller.reviewMakanan} Ulasan",
                           style: const TextStyle(
                             color: Color.fromARGB(255, 30, 100, 170),
                             fontWeight: FontWeight.bold,
@@ -93,7 +95,7 @@ class DetailsMakananPage extends StatelessWidget {
                           const Icon(Icons.star, color: Colors.amber, size: 20),
                           const SizedBox(width: 4),
                           Text(
-                            makanan.rating,
+                            controller.ratingMakanan.toString(),
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -108,7 +110,7 @@ class DetailsMakananPage extends StatelessWidget {
 
                   // Nama Makanan
                   Text(
-                    makanan.namaMakanan,
+                    controller.namaMakanan,
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -119,7 +121,7 @@ class DetailsMakananPage extends StatelessWidget {
 
                   // Harga
                   Text(
-                    "Rp ${makanan.hargaMakanan}",
+                    "Rp ${controller.hargaMakanan}",
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -128,10 +130,10 @@ class DetailsMakananPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
 
-                  // Deskripsi Lengkap
+                  // Deskripsi
                   const Text(
                     "Deskripsi Menu",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
@@ -139,7 +141,7 @@ class DetailsMakananPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    makanan.deskripsi,
+                    controller.deskripsiMakanan,
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.grey[700],
@@ -148,7 +150,7 @@ class DetailsMakananPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
 
-                  // Kotak Informasi Tambahan (Tema Biru Lembut)
+                  // Info Tambahan
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
@@ -158,8 +160,8 @@ class DetailsMakananPage extends StatelessWidget {
                         color: const Color.fromARGB(255, 190, 225, 255),
                       ),
                     ),
-                    child: Row(
-                      children: const [
+                    child: const Row(
+                      children: [
                         Icon(
                           Icons.info_outline,
                           color: Color.fromARGB(255, 40, 120, 200),
@@ -183,8 +185,6 @@ class DetailsMakananPage extends StatelessWidget {
           ],
         ),
       ),
-      
-      // 2. Tombol Aksi di Bagian Bawah (Keranjang & Pesan) dengan Tema Biru
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -204,8 +204,8 @@ class DetailsMakananPage extends StatelessWidget {
               child: OutlinedButton.icon(
                 onPressed: () {
                   Get.snackbar(
-                    "Berhasil", 
-                    "${makanan.namaMakanan} dimasukkan ke keranjang!",
+                    "Berhasil",
+                    "${controller.namaMakanan} dimasukkan ke keranjang!",
                     snackPosition: SnackPosition.BOTTOM,
                     backgroundColor: const Color.fromARGB(255, 215, 238, 255),
                     colorText: const Color.fromARGB(255, 20, 60, 100),
@@ -235,14 +235,14 @@ class DetailsMakananPage extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 12),
-            
-            // Tombol Pesan Sekarang
+
+            // Tombol Pesan
             Expanded(
               child: ElevatedButton.icon(
                 onPressed: () {
                   Get.snackbar(
-                    "Pesanan Diproses", 
-                    "Melanjutkan ke pembayaran ${makanan.namaMakanan}",
+                    "Pesanan Diproses",
+                    "Melanjutkan ke pembayaran ${controller.namaMakanan}",
                     snackPosition: SnackPosition.BOTTOM,
                     backgroundColor: const Color.fromARGB(255, 168, 219, 255),
                     colorText: const Color.fromARGB(255, 20, 60, 100),

@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import '../Models/makanan_model.dart';
 
 class ListMakananController extends GetxController {
-  // Kita buat data-datanya menggunakan Observers (.obs) agar reaktif jika nanti ingin di-update
   var listMakanan = <MakananModel>[
     MakananModel(
       namaMakanan: "Soto Ayam",

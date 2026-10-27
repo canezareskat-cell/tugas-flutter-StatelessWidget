@@ -14,7 +14,7 @@ class ConfirmRegPage extends StatelessWidget {
       appBar: AppBar(title: const Text("Confirm Registration")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        // PERBAIKAN DI SINI: FadeAnimation membungkus Column dengan benar
+   
         child: FadeAnimation(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,11 +47,11 @@ class ConfirmRegPage extends StatelessWidget {
                 "Jenis Kelamin : ${controller.Kelamin}",
                 style: const TextStyle(fontSize: 18),
               ),
-              const SizedBox(height: 20), // Tambahin sedikit jarak biar rapi sebelum tombol
+              const SizedBox(height: 20), 
 
               ElevatedButton(
                 onPressed: () {
-                  Get.back(); // Tetap pakai Get.back() karena lo pakai GetX, mantap!
+                  Get.back(); 
                 },
                 child: const Text("Oke"),
               ),

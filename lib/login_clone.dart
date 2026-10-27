@@ -7,7 +7,6 @@ class LoginClone extends StatefulWidget {
   State<LoginClone> createState() => _LoginCloneState();
 }
 
-// membuat class login clone
 class _LoginCloneState extends State<LoginClone> {
   @override
   Widget build(BuildContext context) {
@@ -30,16 +29,15 @@ class _LoginCloneState extends State<LoginClone> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Spacer kosong di atas agar posisi logo & teks turun secara elegan ke area tengah-atas
+              
                 const SizedBox(height: 40),
 
-                //  Logo Discord & Teks Sambutan (Disatukan agar posisinya pas)
                 Column(
                   children: [
                     const Icon(Icons.discord, size: 88, color: Colors.white),
                     const SizedBox(
                       height: 10,
-                    ), // Jarak pas antara logo dan teks Welcome
+                    ), 
                     const Text(
                       'WELCOME TO\nDISCORD',
                       textAlign: TextAlign.center,
@@ -64,7 +62,6 @@ class _LoginCloneState extends State<LoginClone> {
                   ],
                 ),
 
-                // 3. Bagian Bawah: Tombol Register & Log In
                 Column(
                   children: [
                     SizedBox(
