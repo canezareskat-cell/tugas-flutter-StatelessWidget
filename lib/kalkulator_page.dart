@@ -12,9 +12,9 @@ class _KalkulatorPage1State extends State<KalkulatorPage1> {
   final TextEditingController c1 = TextEditingController();
   final TextEditingController c2 = TextEditingController();
 
-  double hasil = 0; // Variabel buat nyimpen hasil ngitung
+  double hasil = 0; 
 
-  // Fungsi-fungsi perhitungan (tetap sama seperti punyamu, aman!)
+
   void hitungTambah() {
     setState(() {
       double angka1 = double.tryParse(c1.text) ?? 0;
@@ -46,7 +46,7 @@ class _KalkulatorPage1State extends State<KalkulatorPage1> {
       if (angka2 != 0) {
         hasil = angka1 / angka2;
       } else {
-        hasil = 0; // Mencegah error jika dibagi nol
+        hasil = 0; 
       }
     });
   }
@@ -62,7 +62,7 @@ class _KalkulatorPage1State extends State<KalkulatorPage1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100], // Warna background keseluruhan biar lembut
+      backgroundColor: Colors.grey[100], 
       appBar: AppBar(
         title: const Text(
           "Kalkulator Style Login",
@@ -86,7 +86,7 @@ class _KalkulatorPage1State extends State<KalkulatorPage1> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Icon di atas form biar mirip halaman login
+                 
                   const Icon(
                     Icons.calculate_rounded,
                     size: 64,
@@ -104,7 +104,7 @@ class _KalkulatorPage1State extends State<KalkulatorPage1> {
                   ),
                   const SizedBox(height: 25),
 
-                  // Kotak Input Angka 1 (c1) dengan gaya TextField Login
+                 
                   TextField(
                     controller: c1,
                     keyboardType: TextInputType.number,
@@ -120,7 +120,7 @@ class _KalkulatorPage1State extends State<KalkulatorPage1> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Kotak Input Angka 2 (c2)
+               
                   TextField(
                     controller: c2,
                     keyboardType: TextInputType.number,
@@ -137,7 +137,7 @@ class _KalkulatorPage1State extends State<KalkulatorPage1> {
 
                   const SizedBox(height: 24),
 
-                  // Baris Tombol Operator (+, -, x, /)
+                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -179,7 +179,7 @@ class _KalkulatorPage1State extends State<KalkulatorPage1> {
 
                   const SizedBox(height: 20),
 
-                  // Tombol Reset (Warna Merah dengan bentuk modern)
+                  
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.redAccent,
