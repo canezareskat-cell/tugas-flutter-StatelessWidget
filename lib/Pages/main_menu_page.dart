@@ -1,4 +1,5 @@
 import 'package:canezares_flutter_rorrrrrr/Controller/main_menu_controller.dart';
+import 'package:canezares_flutter_rorrrrrr/Pages/menu_drawer_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,17 @@ class MainMenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
+        appBar: AppBar(
+          title: Text(
+            [
+              "Home",
+              "History",
+              "Profile",
+            ][mainMenuController.selectedIndex.value],
+          ),
+        ),
+  
+        drawer: const MenuDrawerPage(),
         body: IndexedStack(
           index: mainMenuController.selectedIndex.value,
           children: mainMenuController.listPages,
@@ -21,22 +33,22 @@ class MainMenuPage extends StatelessWidget {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home), // saat tab aktif
-              label: "home",
+              activeIcon: Icon(Icons.home),
+              label: "Home",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.history_outlined),
-              activeIcon: Icon(Icons.history), // saat tab aktif
-              label: "history",
+              activeIcon: Icon(Icons.history),
+              label: "History",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person_outline),
-              activeIcon: Icon(Icons.person), // saat tab aktif
-              label: "profile",
+              activeIcon: Icon(Icons.person),
+              label: "Profile",
             ),
           ],
         ),
       ),
     );
   }
-} 
+}
