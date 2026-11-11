@@ -1,8 +1,8 @@
-import 'package:canezares_flutter_rorrrrrr/Controller/main_menu_controller.dart';
-import 'package:canezares_flutter_rorrrrrr/Pages/menu_drawer_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:canezares_flutter_rorrrrrr/Controller/main_menu_controller.dart';
+import 'package:canezares_flutter_rorrrrrr/Pages/menu_drawer_page.dart';
 class MainMenuPage extends StatelessWidget {
   MainMenuPage({super.key});
 
@@ -21,8 +21,7 @@ class MainMenuPage extends StatelessWidget {
             ][mainMenuController.selectedIndex.value],
           ),
         ),
-  
-        drawer: const MenuDrawerPage(),
+        drawer: MenuDrawerPage(),
         body: IndexedStack(
           index: mainMenuController.selectedIndex.value,
           children: mainMenuController.listPages,
@@ -30,20 +29,17 @@ class MainMenuPage extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           onTap: mainMenuController.changePage,
           currentIndex: mainMenuController.selectedIndex.value,
-          items: const [
+          items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home),
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.history_outlined),
-              activeIcon: Icon(Icons.history),
+              icon: Icon(Icons  .history_outlined),
               label: "History",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person_outline),
-              activeIcon: Icon(Icons.person),
               label: "Profile",
             ),
           ],

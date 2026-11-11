@@ -11,55 +11,79 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(16),
             child: Text(
-              "Daftar Makanan",
+              "Daftar API (JSON Array)",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
           SizedBox(
             height: 200,
             child: Obx(
-              () => ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: controller.listMakanan.length,
-                itemBuilder: (context, index) {
-                  final makanan = controller.listMakanan[index];
-                  return Container(
-                    width: 150,
-                    margin: EdgeInsets.only(left: 10),
-                    child: Card(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: Image.network(
-                              makanan.gambar,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Icon(Icons.fastfood);
-                              },
+              () {
+                // Pengecekan loading
+                if (controller.isLoading.value) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                // Pengecekan data kosong
+                if (controller.postList.isEmpty) {
+                  return const Center(child: Text("Tidak ada data"));
+                }
+
+                // Menampilkan daftar JSON array
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: controller.postList.length, 
+                  itemBuilder: (context, index) {
+                    final data = controller.postList[index]; 
+                    
+                    return Container(
+                      width: 150,
+                      margin: const EdgeInsets.only(left: 10),
+                      child: Card(
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                width: double.infinity,
+                                color: Colors.blue.withOpacity(0.1),
+                                child: const Icon(Icons.article, size: 50, color: Colors.blue),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: Column(
-                              children: [
-                                Text(makanan.namaMakanan),
-                                Text(makanan.hargaMakanan),
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    data.title, 
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    data.body,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                },
-              ),
+                    );
+                  },
+                );
+              },
             ),
           ),
         ],
