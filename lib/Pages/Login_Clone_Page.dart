@@ -1,65 +1,103 @@
 import 'package:flutter/material.dart';
+import 'package:canezares_flutter_rorrrrrr/Controller/login_controller.dart';
 import 'package:canezares_flutter_rorrrrrr/Components/custom_button_discord.dart';
 import 'package:canezares_flutter_rorrrrrr/Components/custom_teks_discord.dart';
+import 'package:get/get.dart';
 
 class LoginClonePage extends StatelessWidget {
-  const LoginClonePage({super.key});
+  LoginClonePage({super.key});
+
+  final controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('asset/images/bg_dc.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24.0,
-              vertical: 16.0,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 35),
+
+            const Text(
+              'Maxim',
+              style: TextStyle(
+                fontSize: 27,
+                color: Color.fromARGB(255, 255, 238, 0),
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const SizedBox(height: 40),
 
-                // PANGGIL KOMPONEN TEKS KUSTOM DI SINI
-                const CustomTextDiscord(
-                  title: 'WELCOME TO\nDISCORD',
-                  subtitle: 'Hang out, play games, or just talk. Tap below to get started!',
+            const SizedBox(height: 25),
+
+            Container(
+              margin: const EdgeInsets.all(25),
+              child: TextField(
+                controller: controller.txtUsername,
+                decoration: const InputDecoration(
+                  hintText: "Input email",
+                  border: OutlineInputBorder(),
                 ),
-
-                Column(
-                  children: [
-                    CustomButtonDiscord(
-                      text: 'Register',
-                      backgroundColor: Colors.white,
-                      textColor: const Color(0xFF2e3136),
-                      onPressed: () {
-                        print("Tombol Register diklik");
-                      },
-                    ),
-                    const SizedBox(height: 12),
-
-                    CustomButtonDiscord(
-                      text: 'Log In',
-                      backgroundColor: const Color(0xFF2e3136).withOpacity(0.5),
-                      textColor: Colors.white,
-                      onPressed: () {
-                        print("Tombol Log In diklik");
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                  ],
-                ),
-              ],
+              ),
             ),
-          ),
+
+            Container(
+              margin: const EdgeInsets.all(25),
+              child: TextField(
+                controller: controller.txtPassword,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  hintText: "Input password",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+
+            Obx(() => controller.isLoading.value
+                ? const CircularProgressIndicator()
+                : SizedBox(
+                    width: 350,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () => controller.login(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 70, 192, 78),
+                      ),
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  )),
+
+            const SizedBox(height: 15),
+
+            SizedBox(
+              width: 350,
+              height: 40,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Text(
+                  'Google',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            SizedBox(
+              width: 350,
+              height: 40,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Text(
+                  'Facebook',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
